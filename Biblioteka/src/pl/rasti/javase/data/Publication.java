@@ -2,8 +2,8 @@ package pl.rasti.javase.data;
 
 import java.io.Serializable;
 
-public class Publication implements Serializable {
-    private static  final long serialVersionUID = 7910452641164094454L;
+public class Publication implements Serializable, Comparable<Publication> {
+    private static final long serialVersionUID = 7910452641164094454L;
     private int year;
     private String title;
     private String publisher;
@@ -37,4 +37,11 @@ public class Publication implements Serializable {
         this.title = title;
         this.publisher = publisher;
     }
+
+    @Override
+    public int compareTo(Publication o) {
+        return title.compareTo(o.getTitle());
+    }
 }
+
+

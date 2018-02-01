@@ -1,6 +1,7 @@
 package pl.rasti.javase.utils;
 
 import pl.rasti.javase.data.Book;
+import pl.rasti.javase.data.LibraryUser;
 import pl.rasti.javase.data.Magazine;
 
 import java.util.InputMismatchException;
@@ -29,6 +30,18 @@ public class DataReader {
         }
         return number;
     }
+
+    public LibraryUser readAndCreateLibraryUser() {
+        System.out.println("Imię: ");
+        String firstName = sc.nextLine();
+        System.out.println("Nazwisko: ");
+        String lastName = sc.nextLine();
+        System.out.println("PESEL: ");
+        String pesel = sc.nextLine();
+
+        return new LibraryUser(firstName, lastName, pesel);
+    }
+
 
     public Book readAndCreateBook() throws InputMismatchException {
         System.out.println("Tytuł: ");
