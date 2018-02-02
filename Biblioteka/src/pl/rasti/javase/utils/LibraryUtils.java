@@ -1,45 +1,60 @@
 package pl.rasti.javase.utils;
+
 ;import pl.rasti.javase.data.*;
 
-import java.util.Collection;
+import java.util.*;
 
 public class LibraryUtils {
 
 
     public static void printBooks(Library lib) {
-        Collection<Publication> publications = lib.getPublications().values();
+        List<Publication> publications = new ArrayList<>();
+        publications.addAll(lib.getPublications().values());
+        Collections.sort(publications, new Library.AlphabeticalComparator());
         int countBooks = 0;
-        for(Publication p: publications) {
-            if(p instanceof Book) {
+        for (Publication p : publications) {
+            if (p instanceof Book) {
                 System.out.println(p);
                 countBooks++;
             }
         }
 
-        if(countBooks == 0) {
+        if (countBooks == 0) {
             System.out.println("Brak książek w bibliotece");
         }
     }
 
 
     public static void printMagazines(Library lib) {
-        Collection<Publication> publications = lib.getPublications().values();
+        List<Publication> publications = new ArrayList<>();
+        publications.addAll(lib.getPublications().values());
+
+        Collections.sort(publications, new Library.AlphabeticalComparator());
         int countMagazines = 0;
-        for(Publication p: publications) {
-            if(p instanceof Magazine) {
+        for (Publication p : publications) {
+            if (p instanceof Magazine) {
                 System.out.println(p);
                 countMagazines++;
             }
         }
 
-        if(countMagazines == 0) {
+        if (countMagazines == 0) {
             System.out.println("Brak magazynów w bibliotece");
         }
     }
 
     public static void printUsers(Library lib) {
-        Collection<LibraryUser> users = lib.getUsers().values();
-        for(LibraryUser u: users) {
+
+        List<LibraryUser> users = new ArrayList<>();
+        users.addAll(lib.getUsers().values());
+
+        Collections.sort(users, new Comparator<LibraryUser>() {
+            @Override
+            public int compare(LibraryUser o1, LibraryUser o2) {
+                return o1.getLastName().compareTo(o2.getLastName());
+            }
+        });
+        for (LibraryUser u : users) {
             System.out.println(u);
         }
     }
